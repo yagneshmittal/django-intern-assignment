@@ -25,9 +25,11 @@ pip install -r requirements.txt
 ### 4. Create `.env` File
 Create a `.env` file in the root with the following content:
 ```env
+# Set to False in production!
 DEBUG=True
 SECRET_KEY=your_secret_key_here
 TELEGRAM_BOT_TOKEN=your_bot_token_here
+DEFAULT_FROM_EMAIL=youremail@example.com
 ```
 
 ### 5. Run the Server
@@ -35,6 +37,13 @@ TELEGRAM_BOT_TOKEN=your_bot_token_here
 python manage.py migrate
 python manage.py runserver
 ```
+
+### Celery & Redis Setup Instructions
+Start Redis Server using following command:-
+sudo systemctl start redis-server
+
+Start Celery Worker using following command:-
+celery -A django_intern worker --loglevel=info
 
 ---
 
@@ -62,10 +71,11 @@ Telegram Bot Integration (Captures Username on /start)
 
 ## How to Run Telegram Bot
 ```bash
-python telegram_bot/bot.py
+python api/telegram_bot.py
 ```
 
 ---
+## An .env.example file is provided for reference. Create your actual .env based on it.
 
 ## Environment Variables
 
